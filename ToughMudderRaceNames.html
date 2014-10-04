@@ -1,0 +1,57 @@
+<script>
+
+//create Racer objects
+
+  function Racer(name, speed, strength) {
+    this.name = name;
+    this.speed = speed;
+    this.strength = strength;
+    this.position = 0;
+    this.hasStrength = function() {
+      return Math.floor(Math.random() * 10) < this.strength;
+    }
+
+//
+
+    this.advance = function() {
+      if (this.hasStrength()) {
+        this.position += this.speed;
+      }
+    }
+    this.progressReport = function() {
+      return this.name + " is at: " + this.position
+    }
+  }
+
+
+
+  var distance = 50;
+
+//up through here we are only declaring things, below we actually take action on them
+
+  alert("Welcome to the Tough Mudder 2014!  We have 2 racers today but forgot who they are - what are the names of today's racers?");
+  var nameOne = prompt("What is Racer 1's name?","Type a lady's name here.");
+  var girl = new Racer (nameOne, 7, 6);
+  var nameTwo = prompt("What is Racer 2's name","Type a man's name here!")
+  var boy = new Racer (nameTwo, 6, 7);
+  alert("Ready, Set, GO!");
+  alert(boy.progressReport());
+  alert(girl.progressReport());
+
+
+  while (girl.position < distance && boy.position < distance) {
+    boy.advance();
+    girl.advance();
+    if ((girl.position && boy.position) < distance) {
+      alert("The Tough Mudder continues!");
+    } else {
+      if (girl.position > boy.position) {
+        alert(girl.name + " takes gold and is the toughest mudder of all!");
+      } else {
+        alert(boy.name + " wins this round.");
+      }
+    }
+    alert(boy.progressReport());
+    alert(girl.progressReport());
+  }
+</script>
